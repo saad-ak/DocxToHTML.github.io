@@ -3,6 +3,20 @@ import os
 from werkzeug.utils import secure_filename
 import shutil
 import zipfile
+import urllib.request
+
+def download_pandoc():
+    pandoc_url = "https://github.com/jgm/pandoc/releases/download/2.18/pandoc-2.18-linux-amd64.tar.gz"
+    pandoc_dir = '/usr/local/bin'
+    download_path = os.path.join(pandoc_dir, "pandoc-2.18-linux-amd64.tar.gz")
+
+    # Download Pandoc binary if not already installed
+    if not os.path.exists("/usr/local/bin/pandoc"):
+        urllib.request.urlretrieve(pandoc_url, download_path)
+        os.system(f"tar -xvzf {download_path} -C {pandoc_dir}")
+        os.remove(download_path)
+
+download_pandoc()
 
 # Import your bulk_convert_docx_to_html function
 from conversion.googleDocToHTMLBulk import bulk_convert_docx_to_html
