@@ -100,4 +100,5 @@ def download_files():
     return send_file(zip_path, as_attachment=True)
 
 if __name__ == '__main__':
+    # Run app locally or let Gunicorn manage it in production
     app.run(host='0.0.0.0', port=5000, debug=False)

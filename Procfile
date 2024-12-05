@@ -1,1 +1,1 @@
-web: apt-get update && apt-get install -y pandoc && gunicorn main:app
+web: gunicorn main:app
